@@ -15,6 +15,7 @@ from app.gateway.routers import (
     skills,
     suggestions,
     uploads,
+    pr_analysis
 )
 from deerflow.config.app_config import get_app_config
 
@@ -175,6 +176,9 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
 
     # Channels API is mounted at /api/channels
     app.include_router(channels.router)
+    
+    # 注册新增的 PR 分析路由
+    app.include_router(pr_analysis.router)
 
     @app.get("/health", tags=["health"])
     async def health_check() -> dict:
